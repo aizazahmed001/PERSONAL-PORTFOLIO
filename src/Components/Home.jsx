@@ -122,7 +122,7 @@ function Home() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
             >
               <TextPressure
-                text="AIZAZ"
+                text="AIZAZ  "
                 flex={true}
                 alpha={false}
                 stroke={false}
@@ -140,7 +140,7 @@ function Home() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
             >
               <TextPressure
-                text="AHMED   "
+                text="  AHMED"
                 flex={true}
                 alpha={false}
                 stroke={false}
@@ -166,6 +166,7 @@ function Home() {
                 <span>#MERN STACK</span>
                 <span>#Frontend</span>
                 <span>#CREATIVE</span>
+                <span>#UIUX</span>
               </div>
             </Marquee>
           </motion.div>
