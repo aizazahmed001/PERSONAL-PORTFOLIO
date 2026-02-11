@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+/* Modern Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050505;
+    /* Deep Black/Grey */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333333;
+    /* Dark Grey thumb */
+    border-radius: 5px;
+    border: 2px solid #050505;
+    /* Creates padding effect */
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #F9D423;
+    /* Signature Yellow on hover */
+}
