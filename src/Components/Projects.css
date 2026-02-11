@@ -91,7 +91,7 @@
 }
 
 .project-card:hover .project-title {
-    background: linear-gradient(90deg, #F9D423, #aacc00);
+    background: linear-gradient(90deg, #0047AB, #002966);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -129,7 +129,7 @@
 .project-card:hover .tech-tag {
     background: rgba(249, 212, 35, 0.1);
     border-color: rgba(249, 212, 35, 0.3);
-    color: #F9D423;
+    color: #0047AB;
 }
 
 /* Description */
@@ -163,7 +163,7 @@
 }
 
 .btn-live {
-    background: linear-gradient(135deg, #F9D423, #aacc00);
+    background: linear-gradient(135deg, #0047AB, #002966);
     color: #000;
     border: none;
 }

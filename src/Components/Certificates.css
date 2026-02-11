@@ -163,7 +163,7 @@
     left: 50%;
     width: 8px;
     height: 8px;
-    background: radial-gradient(circle, #F9D423, #aacc00);
+    background: radial-gradient(circle, #0047AB, #002966);
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(249, 212, 35, 0.8);
     transform-origin: center;
@@ -208,11 +208,11 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(90deg,
-            #F9D423 0%,
-            #aacc00 25%,
-            #F9D423 50%,
-            #aacc00 75%,
-            #F9D423 100%);
+            #0047AB 0%,
+            #002966 25%,
+            #0047AB 50%,
+            #002966 75%,
+            #0047AB 100%);
     background-size: 200% 100%;
     z-index: 0;
     transition: opacity 0.4s ease;
@@ -257,7 +257,7 @@
     position: absolute;
     inset: -2px;
     border-radius: 60px;
-    background: linear-gradient(135deg, #F9D423, #aacc00);
+    background: linear-gradient(135deg, #0047AB, #002966);
     opacity: 0;
     z-index: -1;
     filter: blur(10px);

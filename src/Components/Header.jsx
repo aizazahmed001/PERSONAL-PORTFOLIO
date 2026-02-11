@@ -140,7 +140,7 @@ const Header = () => {
                     to={link.href}
                     onClick={() => setIsOpen(false)}
                     className={({ isActive }) =>
-                      `group relative text-4xl sm:text-5xl font-bold py-4 transition-all duration-300 ${isActive ? 'text-[#F9D423]' : 'text-white'}`
+                      `group relative text-4xl sm:text-5xl font-bold py-4 transition-all duration-300 ${isActive ? 'text-[#0047AB]' : 'text-white'}`
                     }
                   >
                     <motion.div
@@ -168,7 +168,7 @@ const Header = () => {
                     >
                       {/* Gradient background on hover */}
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-[#F9D423] to-[#aacc00] opacity-0 group-hover:opacity-10 rounded-lg -z-10"
+                        className="absolute inset-0 bg-gradient-to-r from-[#0047AB] to-[#002966] opacity-0 group-hover:opacity-10 rounded-lg -z-10"
                         initial={{ scaleX: 0, originX: 0 }}
                         whileHover={{ scaleX: 1 }}
                         transition={{ duration: 0.4 }}
@@ -194,7 +194,7 @@ const Header = () => {
                             }}
                             whileHover={{
                               y: -5,
-                              color: '#F9D423',
+                              color: '#0047AB',
                               scale: 1.1,
                               transition: { duration: 0.2 }
                             }}
@@ -210,7 +210,7 @@ const Header = () => {
 
                       {/* Animated underline */}
                       <motion.div
-                        className="absolute bottom-2 left-0 h-[3px] bg-gradient-to-r from-[#F9D423] to-[#aacc00]"
+                        className="absolute bottom-2 left-0 h-[3px] bg-gradient-to-r from-[#0047AB] to-[#002966]"
                         initial={{ width: 0 }}
                         whileHover={{ width: '100%' }}
                         transition={{ duration: 0.4, ease: "easeInOut" }}

@@ -50,10 +50,10 @@ const AnimatedHeroTitle = () => {
         <motion.span
           key={`${keyPrefix}-${i}`}
           variants={child}
-          className={`inline-block cursor-pointer ${isSpecial ? 'bg-gradient-to-r from-[#F9D423] to-[#aacc00] animate-gradient bg-clip-text text-transparent' : ''}`}
+          className={`inline-block cursor-pointer ${isSpecial ? 'bg-gradient-to-r from-[#0047AB] to-[#002966] animate-gradient bg-clip-text text-transparent' : ''}`}
           whileHover={isSpecial
             ? { scale: 1.2, rotate: -5, y: -3, transition: { duration: 0.2 } }
-            : { scale: 1.3, color: '#F9D423', rotate: 5, y: -5, transition: { duration: 0.2 } }
+            : { scale: 1.3, color: '#0047AB', rotate: 5, y: -5, transition: { duration: 0.2 } }
           }
         >
           {char}
@@ -155,7 +155,7 @@ function Home() {
 
           {/* 2. Tagline Bar */}
           <motion.div
-            className='w-[calc(100%+3rem)] sm:w-[calc(100%+6rem)] -ml-6 sm:-ml-12 border-y border-black/20 mb-12 overflow-hidden bg-gradient-to-r from-[#F9D423] to-[#aacc00] animate-gradient z-20 relative'
+            className='w-[calc(100%+3rem)] sm:w-[calc(100%+6rem)] -ml-6 sm:-ml-12 border-y border-black/20 mb-12 overflow-hidden bg-gradient-to-r from-[#0047AB] to-[#002966] animate-gradient z-20 relative'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -217,7 +217,7 @@ function Home() {
                         }}
                         whileHover={{
                           scale: 1.1,
-                          color: '#F9D423',
+                          color: '#0047AB',
                           y: -5,
                           transition: { duration: 0.2 }
                         }}
@@ -233,10 +233,10 @@ function Home() {
                     href="./AizazAhmed-SE-CV.pdf"
                     download
                     onClick={handleDownload}
-                    className='group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full text-lg font-bold border-2 border-transparent hover:border-[#F9D423] text-black hover:text-[#F9D423] transition-all duration-300 shadow-[0_0_20px_rgba(170,204,0,0.3)] overflow-hidden'
+                    className='group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full text-lg font-bold border-2 border-transparent hover:border-[#0047AB] text-black hover:text-[#0047AB] transition-all duration-300 shadow-[0_0_20px_rgba(0,71,171,0.3)] overflow-hidden'
                   >
                     {/* Animated Gradient Background */}
-                    <span className="absolute inset-0 bg-gradient-to-r from-[#F9D423] to-[#aacc00] animate-gradient opacity-100 group-hover:opacity-0 transition-opacity duration-300"></span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-[#0047AB] to-[#002966] animate-gradient opacity-100 group-hover:opacity-0 transition-opacity duration-300"></span>
 
                     {/* Button Content */}
                     <span className="relative z-10 flex items-center gap-3">
@@ -293,7 +293,7 @@ function Home() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className='flex flex-col gap-3 group'
                 >
-                  <div className='flex text-[#F9D423] gap-2'>
+                  <div className='flex text-[#0047AB] gap-2'>
                     {[...Array(5)].map((_, i) => (
                       <motion.span
                         key={i}
@@ -317,7 +317,7 @@ function Home() {
                     whileHover={{ scale: 1.02 }}
                   >
                     "Exceptional attention to detail."
-                    <motion.span className="absolute -bottom-1 left-0 h-[1px] bg-[#F9D423]/50 w-0 group-hover:w-full transition-all duration-500" />
+                    <motion.span className="absolute -bottom-1 left-0 h-[1px] bg-[#0047AB]/50 w-0 group-hover:w-full transition-all duration-500" />
                   </motion.p>
                 </motion.div>
 
@@ -334,11 +334,11 @@ function Home() {
                     whileInView={{ height: '70%' }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, delay: 0.6 }}
-                    className="absolute left-0 top-1.5 w-[1px] bg-gradient-to-b from-[#F9D423] to-transparent hidden sm:block"
+                    className="absolute left-0 top-1.5 w-[1px] bg-gradient-to-b from-[#0047AB] to-transparent hidden sm:block"
                   />
                   <h4 className='text-4xl font-black text-white flex items-baseline gap-1'>
                     <StatCounter value={2} />
-                    <span className="text-[#aacc00] text-2xl">+</span>
+                    <span className="text-[#002966] text-2xl">+</span>
                   </h4>
                   <p className='text-xs text-gray-400 font-bold uppercase tracking-[0.3em]'>Years Exp.</p>
                 </motion.div>
@@ -356,11 +356,11 @@ function Home() {
                     whileInView={{ height: '70%' }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, delay: 0.8 }}
-                    className="absolute left-0 top-1.5 w-[1px] bg-gradient-to-b from-[#F9D423] to-transparent hidden sm:block"
+                    className="absolute left-0 top-1.5 w-[1px] bg-gradient-to-b from-[#0047AB] to-transparent hidden sm:block"
                   />
                   <h4 className='text-4xl font-black text-white flex items-baseline gap-1'>
                     <StatCounter value={20} />
-                    <span className="text-[#aacc00] text-2xl">+</span>
+                    <span className="text-[#002966] text-2xl">+</span>
                   </h4>
                   <p className='text-xs text-gray-400 font-bold uppercase tracking-[0.3em]'>Projects</p>
                 </motion.div>

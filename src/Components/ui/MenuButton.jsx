@@ -19,7 +19,7 @@ const MenuButton = ({ isOpen, onClick }) => {
                     className="w-6 h-0.5 bg-white origin-center"
                 />
             </div>
-            <span className="text-sm font-medium uppercase tracking-wider group-hover:text-[#F9D423] transition-colors">
+            <span className="text-sm font-medium uppercase tracking-wider group-hover:text-[#0047AB] transition-colors">
                 {isOpen ? 'Close' : 'Menu'}
             </span>
         </button>

@@ -85,7 +85,7 @@ const Preloader = ({ onComplete }) => {
             variants={slideUp}
             initial="initial"
             exit="exit"
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black text-[#F9D423] overflow-hidden cursor-wait"
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black text-[#0047AB] overflow-hidden cursor-wait"
         >
             {/* Center Greeting */}
             <motion.div
@@ -96,7 +96,7 @@ const Preloader = ({ onComplete }) => {
                 className="flex items-center justify-center text-4xl md:text-6xl font-bold z-10"
             >
                 <div className="flex items-center gap-3">
-                    <span className="w-3 h-3 bg-[#F9D423] rounded-full inline-block animate-pulse"></span>
+                    <span className="w-3 h-3 bg-[#0047AB] rounded-full inline-block animate-pulse"></span>
                     <span className="font-['Bebas_Neue'] tracking-wider">{words[index]}</span>
                 </div>
             </motion.div>

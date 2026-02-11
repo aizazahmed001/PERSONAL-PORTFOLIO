@@ -98,7 +98,7 @@ const Footer = () => {
                 whileHover={{
                   scale: 1.2,
                   opacity: 0.5,
-                  color: '#F9D423',
+                  color: '#0047AB',
                   transition: { duration: 0.2 }
                 }}
               >
@@ -112,7 +112,7 @@ const Footer = () => {
       {/* Top Part: Logo & Nav */}
       <div className="flex flex-col lg:flex-row justify-between items-center gap-8 mb-12 sm:mb-16">
         <div className="flex items-center gap-2">
-          <span className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#F9D423] to-[#aacc00] animate-gradient bg-clip-text text-transparent">Aizaz Ahmed</span>
+          <span className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#0047AB] to-[#002966] animate-gradient bg-clip-text text-transparent">Aizaz Ahmed</span>
         </div>
 
         <nav className="flex flex-wrap justify-center gap-6 sm:gap-10">
@@ -120,7 +120,7 @@ const Footer = () => {
             <Link
               key={item}
               to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-              className="text-lg relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:w-0 after:bg-[#aacc00] after:transition-all after:duration-300 hover:after:w-full"
+              className="text-lg relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:w-0 after:bg-[#0047AB] after:transition-all after:duration-300 hover:after:w-full"
             >
               {item}
             </Link>
@@ -134,13 +134,13 @@ const Footer = () => {
           <h4 className="text-4xl font-black text-white uppercase tracking-tighter mb-2">Contact Me</h4>
           <div className="flex flex-col gap-4 mt-4">
             <div className="flex items-center gap-3 justify-center lg:justify-start">
-              <div className="w-10 h-10 rounded-full bg-[#191919] flex items-center justify-center text-[#F9D423]">
+              <div className="w-10 h-10 rounded-full bg-[#191919] flex items-center justify-center text-[#0047AB]">
                 <Mail size={20} />
               </div>
               <p className="text-lg">aizazahmed098@gmail.com</p>
             </div>
             <div className="flex items-center gap-3 justify-center lg:justify-start">
-              <div className="w-10 h-10 rounded-full bg-[#191919] flex items-center justify-center text-[#F9D423]">
+              <div className="w-10 h-10 rounded-full bg-[#191919] flex items-center justify-center text-[#0047AB]">
                 <Phone size={20} />
               </div>
               <p className="text-lg">+92-300-8925097</p>
@@ -175,7 +175,7 @@ const Footer = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Email"
-            className="w-full p-4 rounded-xl border border-white/20 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-[#aacc00] transition-colors"
+            className="w-full p-4 rounded-xl border border-white/20 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-[#0047AB] transition-colors"
           />
           <textarea
             name="message"
@@ -184,15 +184,15 @@ const Footer = () => {
             onChange={handleChange}
             placeholder="Type Your Message"
             rows="4"
-            className="w-full p-4 rounded-xl border border-white/20 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-[#aacc00] transition-colors resize-none"
+            className="w-full p-4 rounded-xl border border-white/20 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-[#0047AB] transition-colors resize-none"
           />
           <button
             type="submit"
             disabled={isSending}
-            className="w-full relative group flex items-center justify-center gap-3 py-4 rounded-full text-lg font-bold border-2 border-transparent hover:border-[#F9D423] text-black hover:text-[#F9D423] transition-all duration-300 shadow-[0_0_20px_rgba(170,204,0,0.3)] cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
+            className="w-full relative group flex items-center justify-center gap-3 py-4 rounded-full text-lg font-bold border-2 border-transparent hover:border-[#0047AB] text-black hover:text-[#0047AB] transition-all duration-300 shadow-[0_0_20px_rgba(0,71,171,0.3)] cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
           >
             {/* Animated Gradient Background */}
-            <span className="absolute inset-0 bg-gradient-to-r from-[#F9D423] to-[#aacc00] animate-gradient opacity-100 group-hover:opacity-0 transition-opacity duration-300"></span>
+            <span className="absolute inset-0 bg-gradient-to-r from-[#0047AB] to-[#002966] animate-gradient opacity-100 group-hover:opacity-0 transition-opacity duration-300"></span>
 
             {/* Button Content */}
             <span className="relative z-10 flex items-center gap-3">

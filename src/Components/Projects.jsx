@@ -108,7 +108,7 @@ function ProjectCard({ project, index }) {
       >
         <motion.path
           d={wirePath}
-          stroke="#F9D423"
+          stroke="#0047AB"
           strokeWidth="1.5"
           strokeLinecap="round"
           fill="none"
@@ -119,7 +119,7 @@ function ProjectCard({ project, index }) {
           cx={index % 2 === 0 ? cardWidth * 0.8 : cardWidth * 0.2}
           cy="-420"
           r="3"
-          fill="#F9D423"
+          fill="#0047AB"
           className="opacity-40"
         />
       </svg>
@@ -160,7 +160,7 @@ function ProjectCard({ project, index }) {
           <div className='project-overlay'></div>
 
           {/* Large Number Background */}
-          <div className='project-number text-[#F9D423]/20'>0{project.id}</div>
+          <div className='project-number text-[#0047AB]/20'>0{project.id}</div>
         </div>
 
         {/* Content Section */}

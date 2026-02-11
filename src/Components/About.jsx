@@ -48,7 +48,7 @@ const AnimatedTitle = ({ text, className, noHover = false }) => (
                         y: [0, -20, 0],
                         scale: [1, 1.5, 1],
                         rotate: [0, 15, -10, 0],
-                        color: ['#F9D423', '#ffffff', '#F9D423'],
+                        color: ['#0047AB', '#ffffff', '#0047AB'],
                         textShadow: [
                             '0 0 0px rgba(249, 212, 35, 0)',
                             '0 0 20px rgba(249, 212, 35, 1)',
@@ -132,7 +132,7 @@ const ModernProgressBar = ({ label, percentage, color }) => (
     <div className='flex flex-col gap-2 w-full max-w-4xl px-10 mb-8'>
         <div className='flex justify-between items-end'>
             <span className='text-sm font-black tracking-[0.2em] uppercase text-white/50'>{label}</span>
-            <span className='text-sm font-bold text-[#F9D423]'>{percentage}%</span>
+            <span className='text-sm font-bold text-[#0047AB]'>{percentage}%</span>
         </div>
         <div className='h-[6px] w-full bg-white/5 rounded-full overflow-hidden relative border border-white/5'>
             {/* The active progress fill */}
@@ -201,7 +201,7 @@ function About() {
                         <motion.div variants={itemVariants}>
                             <AnimatedTitle
                                 text="Objective:"
-                                className='text-[#F9D423] text-2xl font-bold'
+                                className='text-[#0047AB] text-2xl font-bold'
                                 noHover={true}
                             />
                         </motion.div>
@@ -216,7 +216,7 @@ function About() {
                         <motion.div variants={itemVariants}>
                             <AnimatedTitle
                                 text="Education and skills:"
-                                className='text-[#F9D423] text-2xl font-bold'
+                                className='text-[#0047AB] text-2xl font-bold'
                                 noHover={true}
                             />
                         </motion.div>
@@ -232,7 +232,7 @@ function About() {
             {/* Education Section */}
             <div className='flex flex-col gap-16 text-white px-10 py-10 bg-black w-full'>
                 <div className='flex flex-col place-items-center'>
-                    <motion.p variants={itemVariants} className='text-center text-xl text-[#F9D423]'>{'( 2018-2027 )'}</motion.p>
+                    <motion.p variants={itemVariants} className='text-center text-xl text-[#0047AB]'>{'( 2018-2027 )'}</motion.p>
                     <motion.div variants={itemVariants} className="w-full flex justify-center">
                         <AnimatedHeading text='Education Quality' />
                     </motion.div>
@@ -243,12 +243,12 @@ function About() {
                         <div className='flex flex-wrap justify-between items-start gap-2 mb-2'>
                             <AnimatedTitle
                                 text="BS Software Engineering"
-                                className='md:text-4xl sm:text-2xl text-lg pl-1 font-bold text-[#F9D423]'
+                                className='md:text-4xl sm:text-2xl text-lg pl-1 font-bold text-[#0047AB]'
                                 noHover={true}
                             />
-                            <span className='rounded-md px-3 py-1 font-bold text-black bg-[#aacc00] text-sm md:text-base'>In Progress</span>
+                            <span className='rounded-md px-3 py-1 font-bold text-white bg-[#0047AB] text-sm md:text-base'>In Progress</span>
                         </div>
-                        <p className='md:text-lg font-semibold pt-2 pl-1 text-[#aacc00]'>
+                        <p className='md:text-lg font-semibold pt-2 pl-1 text-[#0047AB]'>
                             Bahria University Islamabad {'(2023-2027)'}
                         </p>
                         <MagnifiedText
@@ -261,12 +261,12 @@ function About() {
                         <div className='flex flex-wrap justify-between items-start gap-2 mb-2'>
                             <AnimatedTitle
                                 text="FSc Pre-Engineering"
-                                className='md:text-4xl sm:text-2xl text-lg font-bold text-[#F9D423]'
+                                className='md:text-4xl sm:text-2xl text-lg font-bold text-[#0047AB]'
                                 noHover={true}
                             />
-                            <span className='rounded-md px-3 py-1 font-bold text-black bg-[#aacc00] text-sm md:text-base'>840/1100</span>
+                            <span className='rounded-md px-3 py-1 font-bold text-white bg-[#0047AB] text-sm md:text-base'>A GRADE</span>
                         </div>
-                        <p className='md:text-lg text-[#aacc00] pt-2'>
+                        <p className='md:text-lg text-[#0047AB] pt-2'>
                             Bahria College Karsaz Karachi {'(2021-2023)'}
                         </p>
                         <MagnifiedText
@@ -279,13 +279,13 @@ function About() {
                         <div className='flex flex-wrap justify-between items-start gap-2 mb-2'>
                             <AnimatedTitle
                                 text="Metric in Science"
-                                className='md:text-4xl sm:text-2xl text-lg font-bold text-[#F9D423]'
+                                className='md:text-4xl sm:text-2xl text-lg font-bold text-[#0047AB]'
                                 noHover={true}
                             />
-                            <span className='rounded-md px-3 py-1 font-bold text-black bg-[#aacc00] text-sm md:text-base'>953/1100</span>
+                            <span className='rounded-md px-3 py-1 font-bold text-white bg-[#0047AB] text-sm md:text-base'>A GRADE</span>
                         </div>
-                        <p className='md:text-lg text-[#aacc00] pt-2'>
-                            Bahria College Karsaz Karachi {'(2018-2021)'}
+                        <p className='md:text-lg text-[#0047AB] pt-2'>
+                            Bahria College Karsaz Karachi {'(2019-2021)'}
                         </p>
                         <MagnifiedText
                             className='md:text-lg mt-5 w-full md:w-[80%] text-white/75 cursor-default leading-normal'
@@ -298,7 +298,7 @@ function About() {
             {/* Skills Section */}
             <div className='bg-black'>
                 <div className='flex flex-col place-items-center py-10 px-10 gap-3'>
-                    <motion.p variants={itemVariants} className='text-[#F9D423] text-xl'>Technical Proficiency</motion.p>
+                    <motion.p variants={itemVariants} className='text-[#0047AB] text-xl'>Technical Proficiency</motion.p>
                     <motion.div variants={itemVariants} className="w-full flex justify-center">
                         <AnimatedHeading text='Development Skills' />
                     </motion.div>

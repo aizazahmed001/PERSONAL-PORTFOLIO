@@ -46,6 +46,6 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #F9D423;
-    /* Signature Yellow on hover */
+    background: #0047AB;
+    /* Signature Blue on hover */
 }

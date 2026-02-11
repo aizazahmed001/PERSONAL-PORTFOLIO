@@ -4,12 +4,12 @@ const Button = ({ children, variant = 'primary', className = '', ...props }) => 
     const baseStyles = "px-8 py-4 rounded-xl font-medium transition-all duration-300 transform active:scale-95 border border-dark text-lg";
 
     const variants = {
-        primary: "bg-[#F9D423] text-black hover:bg-white",
-        dark: "bg-black text-white hover:bg-[#F9D423] hover:text-black",
-        outline: "bg-transparent text-black border-black hover:bg-[#F9D423]",
+        primary: "bg-[#0047AB] text-white hover:bg-white hover:text-black",
+        dark: "bg-black text-white hover:bg-[#0047AB] hover:text-white",
+        outline: "bg-transparent text-black border-black hover:bg-[#0047AB] hover:text-white",
     };
 
-    // Adjusted colors to match user's theme (Yellow #F9D423)
+    // Adjusted colors to match user's theme (Blue #0047AB)
 
     return (
         <button

@@ -224,11 +224,11 @@ function CertificateCard({ item, index, hoveredIndex, setHoveredIndex, viewingIn
           e.stopPropagation();
           handleView(index);
         }}
-        className='group relative flex items-center justify-center gap-3 mt-5 px-8 py-4 rounded-full text-lg font-bold border-2 border-transparent hover:border-[#F9D423] text-black hover:text-[#F9D423] transition-all duration-300 shadow-[0_0_20px_rgba(170,204,0,0.3)] overflow-hidden'
+        className='group relative flex items-center justify-center gap-3 mt-5 px-8 py-4 rounded-full text-lg font-bold border-2 border-transparent hover:border-[#0047AB] text-black hover:text-[#0047AB] transition-all duration-300 shadow-[0_0_20px_rgba(0,71,171,0.3)] overflow-hidden'
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#F9D423] to-[#aacc00] animate-gradient opacity-100 group-hover:opacity-0 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0047AB] to-[#002966] animate-gradient opacity-100 group-hover:opacity-0 transition-opacity duration-300" />
 
         <span className='button-content relative z-10'>
           <span className='button-text text-inherit'>Download PDF</span>
