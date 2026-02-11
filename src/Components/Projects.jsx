@@ -7,18 +7,46 @@ function Projects() {
   const projects = [
     {
       id: 1,
-      title: "Sprite Website Redesign",
-      desc: "A refreshing and modern redesign of the Sprite drink website. This high-performance landing page features dynamic GSAP animations and a crisp, responsive layout that captures the brand's energetic vibe.",
+      title: "Electro. Electronics Store Landing Page",
+      desc: "A sleek, responsive electronics store landing page showcasing product highlights, promotional sections, and user-centric design.",
       tags: ["HTML", "CSS", "JavaScript", "GSAP"],
       video: "/project1.mp4"
     },
     {
       id: 2,
-      title: "Pixel-Perfect Landing Page",
-      desc: "A faithful conversion of a complex Figma design into a fully functional web landing page. Optimized for performance and responsiveness, showcasing precise attention to detail and clean code structure.",
-      tags: ["HTML", "CSS", "JavaScript", "GSAP"],
+      title: "E-Store Landing Page",
+      desc: "A high-performance, fully responsive landing page built for an electronics store, emphasizing scalable layout structure, optimized assets, and conversion-focused design elements.",
+      tags: ["HTML", "CSS", "JavaScript", "Bootstrap"],
       video: "/project2.mp4"
-    }
+    },
+    {
+      id: 3,
+      title: "PakWheels Clone Landing Page",
+      desc: "A faithful conversion of a complex Figma design into a fully functional web landing page. Optimized for performance and responsiveness, showcasing precise attention to detail and clean code structure.",
+      tags: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+      video: "/project3.mp4"
+    },
+    {
+      id: 4,
+      title: "Kaisee Research Lab Website",
+      desc: "A pixel-perfect implementation of a complex Figma design transformed into a fully functional, responsive landing page. Built with clean, maintainable code and optimized for performance, accessibility, and cross-device compatibility.",
+      tags: ["ReactJs", "HTML", "CSS", "JavaScript", "Tailwind", "Framer Motion" ],
+      video: "/project4.mp4"
+    },
+    {
+      id: 5,
+      title: "COLOSHOP Website",
+      desc: "A modern and responsive e-commerce platform for fashion retail, designed with a seamless user experience and intuitive navigation. Features product listings, dynamic filtering, and a streamlined checkout process.",
+      tags: ["ReactJs", "HTML", "CSS", "JavaScript", "Tailwind", "Framer Motion" ],
+      video: "/project5.mp4"
+    },
+    {
+      id: 6,
+      title: "COZA STORE E-COMMERCE Website",
+      desc: "A pixel-perfect implementation of a complex Figma design transformed into a fully functional, responsive landing page. Built with clean, maintainable code and optimized for performance, accessibility, and cross-device compatibility.",
+      tags: ["ReactJs", "HTML", "CSS", "JavaScript", "Tailwind", "Framer Motion" ],
+      video: "/project6.mp4"
+    },
   ]
 
   return (
