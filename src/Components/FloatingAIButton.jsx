@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send } from 'lucide-react'
 import './FloatingAIButton.css'
@@ -15,6 +15,10 @@ function FloatingAIButton() {
   ])
   const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const trailRefs = useRef([])
+  const glowRef = useRef(null)
+  const dotRef = useRef(null)
 
   const handleSendMessage = async (e) => {
     e.preventDefault()
@@ -94,8 +98,56 @@ function FloatingAIButton() {
     }
   }
 
+  // Cursor animation effect
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const x = e.clientX
+      const y = e.clientY
+      setMousePos({ x, y })
+
+      // Update glow position
+      if (glowRef.current) {
+        glowRef.current.style.left = x - 20 + 'px'
+        glowRef.current.style.top = y - 20 + 'px'
+      }
+
+      // Update dot position
+      if (dotRef.current) {
+        dotRef.current.style.left = x - 4 + 'px'
+        dotRef.current.style.top = y - 4 + 'px'
+      }
+
+      // Create trail effect
+      if (Math.random() > 0.7) {
+        const trail = document.createElement('div')
+        trail.className = 'cursor-trail'
+        trail.style.left = x + 'px'
+        trail.style.top = y + 'px'
+        document.body.appendChild(trail)
+
+        // Animate trail fade out
+        let opacity = 1
+        const fadeInterval = setInterval(() => {
+          opacity -= 0.1
+          trail.style.opacity = opacity
+          if (opacity <= 0) {
+            clearInterval(fadeInterval)
+            trail.remove()
+          }
+        }, 30)
+      }
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
   return (
     <>
+      {/* Custom Cursor Elements */}
+      <div ref={glowRef} className="cursor-glow"></div>
+      <div ref={dotRef} className="cursor-dot"></div>
+
       {/* Floating Button */}
       <motion.button
         className="floating-ai-button"
