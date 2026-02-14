@@ -6,6 +6,7 @@ import './App.css'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 import Preloader from './Components/Preloader'
+import FloatingAIButton from './Components/FloatingAIButton'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,6 +44,7 @@ function App() {
 
   return (
     <>
+      <FloatingAIButton />
       <AnimatePresence mode='wait'>
         {isLoading ? (
           <Preloader key="preloader" onComplete={() => setIsLoading(false)} />

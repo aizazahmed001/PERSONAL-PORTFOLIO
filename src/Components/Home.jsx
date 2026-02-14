@@ -184,7 +184,7 @@ function Home() {
               <div className='relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden bg-gray-900 border border-white/10'>
                 <img
                   className='w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700'
-                  src="/Aizaz.jpeg"
+                  src="/Profile.png"
                   alt="AIZAZ AHMED"
                 />
               </div>
