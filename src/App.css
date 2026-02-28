@@ -26,6 +26,25 @@ body {
     color: white;
 }
 
+/* Force Default Cursors on Mobile Devices */
+@media (max-width: 768px) {
+
+    *,
+    *::before,
+    *::after {
+        cursor: auto !important;
+    }
+
+    a,
+    button,
+    [role="button"],
+    input[type="submit"],
+    input[type="button"],
+    input[type="reset"] {
+        cursor: pointer !important;
+    }
+}
+
 /* Modern Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;

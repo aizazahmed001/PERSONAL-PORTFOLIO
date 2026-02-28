@@ -329,6 +329,21 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 768px) {
+  /* Disable custom cursor on mobile */
+  body {
+    cursor: auto !important;
+  }
+  .cursor-glow,
+  .cursor-dot,
+  .cursor-trail {
+    display: none !important;
+  }
+  .floating-ai-button {
+    cursor: pointer !important;
+  }
+}
+
 @media (max-width: 640px) {
   .floating-ai-button {
     bottom: 20px;

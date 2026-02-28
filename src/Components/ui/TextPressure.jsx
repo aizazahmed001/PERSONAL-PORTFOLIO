@@ -58,10 +58,12 @@ const TextPressure = ({
 
     useEffect(() => {
         const handleMouseMove = e => {
+            if (window.innerWidth <= 768) return;
             cursorRef.current.x = e.clientX;
             cursorRef.current.y = e.clientY;
         };
         const handleTouchMove = e => {
+            if (window.innerWidth <= 768) return;
             const t = e.touches[0];
             cursorRef.current.x = t.clientX;
             cursorRef.current.y = t.clientY;

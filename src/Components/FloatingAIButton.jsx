@@ -101,6 +101,9 @@ function FloatingAIButton() {
   // Cursor animation effect
   useEffect(() => {
     const handleMouseMove = (e) => {
+      // Disable cursor animation on mobile screens
+      if (window.innerWidth <= 768) return;
+
       const x = e.clientX
       const y = e.clientY
       setMousePos({ x, y })
