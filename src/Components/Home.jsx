@@ -359,7 +359,7 @@ function Home() {
                     className="absolute left-0 top-1.5 w-[1px] bg-gradient-to-b from-[#0047AB] to-transparent hidden sm:block"
                   />
                   <h4 className='text-4xl font-black text-white flex items-baseline gap-1'>
-                    <StatCounter value={20} />
+                    <StatCounter value={10} />
                     <span className="text-[#002966] text-2xl">+</span>
                   </h4>
                   <p className='text-xs text-gray-400 font-bold uppercase tracking-[0.3em]'>Projects</p>

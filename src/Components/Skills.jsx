@@ -16,6 +16,11 @@ const skillsData = [
     { src: "/python.png", alt: "PYTHON" },
     { src: "/bootstrap.svg", alt: "BOOTSTRAP" },
     { src: "/c++.png", alt: "C++" },
+    { src: "/vscode.png", alt: "VSCODE" },
+    { src: "/vstudio.png", alt: "VISUALSTUDIO" },
+    { src: "/vmware.webp", alt: "VMWARE" },
+    { src: "/docker.png", alt: "DOCKER" },
+    { src: "/github.png", alt: "GITHUB" },
 ]
 
 function Skills() {
