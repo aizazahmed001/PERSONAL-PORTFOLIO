@@ -28,7 +28,6 @@ function findRelevantPairs(query, topN = 6) {
     let score = 0
     for (const word of queryWords) {
       if (text.includes(word)) score++
-      // Bonus if word appears in the question specifically
       if (item.question.toLowerCase().includes(word)) score += 2
     }
     return { item, score }
@@ -60,7 +59,10 @@ app.post('/api/chat', async (req, res) => {
     return res.status(400).json({ error: 'Message is required' })
   }
 
-  // Build a dynamic system prompt with only relevant pairs
+  // Strip any frontend-only fields like "streaming" before sending to Groq
+  const cleanHistory = history.map(({ role, content }) => ({ role, content }))
+
+  // Build dynamic system prompt with only relevant pairs
   const relevantKnowledge = findRelevantPairs(message)
   const systemPrompt = relevantKnowledge
     ? `${BASE_SYSTEM}\n\nRELEVANT KNOWLEDGE:\n${relevantKnowledge}`
@@ -69,10 +71,10 @@ app.post('/api/chat', async (req, res) => {
   try {
     const response = await client.chat.completions.create({
       model: 'llama-3.3-70b-versatile',
-      max_tokens: 250,
+      max_tokens: 300,
       messages: [
         { role: 'system', content: systemPrompt },
-        ...history.slice(-4),
+        ...cleanHistory.slice(-6),
         { role: 'user', content: message.trim() },
       ],
     })

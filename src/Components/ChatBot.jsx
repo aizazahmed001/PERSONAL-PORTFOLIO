@@ -9,6 +9,163 @@ const SUGGESTIONS = [
   "Your certificates?",
 ];
 
+// ── Streaming word-by-word animation ──────────────────────────────
+function StreamingMessage({ content, onDone }) {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+  const indexRef = useRef(0);
+
+  useEffect(() => {
+    indexRef.current = 0;
+    setDisplayed("");
+    setDone(false);
+
+    // Split into characters for smooth streaming feel
+    const chars = content.split("");
+    
+    const interval = setInterval(() => {
+      if (indexRef.current < chars.length) {
+        // Add 2-4 chars at a time for natural speed
+        const chunkSize = Math.floor(Math.random() * 3) + 2;
+        const next = chars
+          .slice(indexRef.current, indexRef.current + chunkSize)
+          .join("");
+        setDisplayed((prev) => prev + next);
+        indexRef.current += chunkSize;
+      } else {
+        clearInterval(interval);
+        setDone(true);
+        onDone?.();
+      }
+    }, 18); // Speed: lower = faster
+
+    return () => clearInterval(interval);
+  }, [content]);
+
+  return (
+    <div className="relative">
+      <FormattedMessage content={displayed} />
+      {!done && (
+        <motion.span
+          className="inline-block w-0.5 h-3.5 ml-0.5 rounded-full align-middle"
+          style={{ background: "#0047AB" }}
+          animate={{ opacity: [1, 0] }}
+          transition={{ duration: 0.5, repeat: Infinity }}
+        />
+      )}
+    </div>
+  );
+}
+
+
+// ── Format message into clean JSX ─────────────────────────────────
+function FormattedMessage({ content }) {
+  // Normalize: collapse multiple newlines into max 2
+  const normalized = content
+    .replace(/\r\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+
+  const blocks = normalized.split('\n\n')
+
+  return (
+    <div className="flex flex-col gap-2">
+      {blocks.map((block, bi) => {
+        const lines = block.split('\n').map(l => l.trim()).filter(Boolean)
+
+        return (
+          <div key={bi} className="flex flex-col gap-1">
+            {lines.map((line, li) => {
+              // Bullet: - or * or •
+              if (/^[-*•]\s+/.test(line)) {
+                const text = line.replace(/^[-*•]\s+/, '')
+                return (
+                  <div key={li} className="flex items-start gap-2">
+                    <span
+                      className="w-1 h-1 rounded-full flex-shrink-0"
+                      style={{ background: '#0047AB', marginTop: '7px' }}
+                    />
+                    <span className="text-white/85 leading-snug">
+                      {renderInline(text)}
+                    </span>
+                  </div>
+                )
+              }
+
+              // Numbered list: 1. 2. etc
+              if (/^\d+\.\s+/.test(line)) {
+                const num = line.match(/^(\d+)\./)[1]
+                const text = line.replace(/^\d+\.\s+/, '')
+                return (
+                  <div key={li} className="flex items-start gap-2">
+                    <span
+                      className="text-xs font-bold flex-shrink-0"
+                      style={{ color: '#0047AB', minWidth: '14px', marginTop: '2px' }}
+                    >
+                      {num}.
+                    </span>
+                    <span className="text-white/85 leading-snug">
+                      {renderInline(text)}
+                    </span>
+                  </div>
+                )
+              }
+
+              // Label: value pattern (e.g. "Email: xyz@gmail.com")
+              if (/^[^:]{1,20}:\s.+/.test(line)) {
+                const colonIdx = line.indexOf(':')
+                const label = line.slice(0, colonIdx).trim()
+                const value = line.slice(colonIdx + 1).trim()
+                return (
+                  <div key={li} className="flex items-start gap-1 flex-wrap leading-snug">
+                    <span className="font-semibold text-white flex-shrink-0">
+                      {label}:
+                    </span>
+                    <span className="text-white/75">{renderInline(value)}</span>
+                  </div>
+                )
+              }
+
+              // Regular line
+              return (
+                <p key={li} className="text-white/85 leading-snug">
+                  {renderInline(line)}
+                </p>
+              )
+            })}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function renderInline(text) {
+  const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`)/g)
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={i} className="font-semibold text-white">
+          {part.slice(2, -2)}
+        </strong>
+      )
+    }
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return (
+        <code
+          key={i}
+          className="px-1 py-0.5 rounded text-xs font-mono"
+          style={{ background: '#0047AB22', color: '#60a5fa' }}
+        >
+          {part.slice(1, -1)}
+        </code>
+      )
+    }
+    return <span key={i}>{part}</span>
+  })
+}
+
+// ── Main ChatBot Component ─────────────────────────────────────────
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -16,6 +173,7 @@ export default function ChatBot() {
       role: "assistant",
       content:
         "Hi! 👋 I'm Aizaz's AI assistant. Ask me anything about his skills, projects, education, or how to hire him!",
+      streaming: false,
     },
   ]);
   const [input, setInput] = useState("");
@@ -41,7 +199,7 @@ export default function ChatBot() {
     if (!text.trim() || isLoading) return;
 
     setShowSuggestions(false);
-    const userMsg = { role: "user", content: text.trim() };
+    const userMsg = { role: "user", content: text.trim(), streaming: false };
     const updated = [...messages, userMsg];
     setMessages(updated);
     setInput("");
@@ -62,8 +220,11 @@ export default function ChatBot() {
         data.reply ||
         "Something went wrong. Reach Aizaz at aizazahmed098@gmail.com";
 
-      setMessages([...updated, { role: "assistant", content: reply }]);
-
+      // Add message with streaming: true — triggers word-by-word animation
+      setMessages([
+        ...updated,
+        { role: "assistant", content: reply, streaming: true },
+      ]);
       if (!isOpen) setHasNewMessage(true);
     } catch {
       setMessages([
@@ -72,11 +233,19 @@ export default function ChatBot() {
           role: "assistant",
           content:
             "Network error. Contact Aizaz at aizazahmed098@gmail.com or WhatsApp +923008925097",
+          streaming: true,
         },
       ]);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Called when streaming animation finishes — marks message as done
+  const handleStreamDone = (index) => {
+    setMessages((prev) =>
+      prev.map((m, i) => (i === index ? { ...m, streaming: false } : m))
+    );
   };
 
   const handleKeyDown = (e) => {
@@ -92,6 +261,7 @@ export default function ChatBot() {
         role: "assistant",
         content:
           "Hi! 👋 I'm Aizaz's AI assistant. Ask me anything about his skills, projects, education, or how to hire him!",
+        streaming: false,
       },
     ]);
     setShowSuggestions(true);
@@ -99,7 +269,7 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* Floating Button */}
+      {/* ── Floating Button ── */}
       <motion.button
         onClick={() => setIsOpen((prev) => !prev)}
         className="fixed bottom-6 right-6 z-[999] w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(0,71,171,0.6)]"
@@ -144,7 +314,7 @@ export default function ChatBot() {
         </AnimatePresence>
       </motion.button>
 
-      {/* Unread dot */}
+      {/* ── Unread dot ── */}
       <AnimatePresence>
         {!isOpen && hasNewMessage && (
           <motion.div
@@ -156,7 +326,7 @@ export default function ChatBot() {
         )}
       </AnimatePresence>
 
-      {/* Chat Window */}
+      {/* ── Chat Window ── */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -165,11 +335,7 @@ export default function ChatBot() {
             exit={{ opacity: 0, y: 40, scale: 0.94 }}
             transition={{ type: "spring", stiffness: 320, damping: 28 }}
             className="fixed bottom-24 right-6 z-[998] flex flex-col rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,71,171,0.2)]"
-            style={{
-              width: "360px",
-              height: "500px",
-              background: "#090909",
-            }}
+            style={{ width: "360px", height: "500px", background: "#090909" }}
           >
             {/* Header */}
             <div
@@ -189,7 +355,7 @@ export default function ChatBot() {
                 </div>
                 <div>
                   <p className="text-white font-bold text-sm leading-none">
-                    Aizazs AI Assistant
+                    Aizaz's AI Assistant
                   </p>
                   <div className="flex items-center gap-1.5 mt-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -206,7 +372,7 @@ export default function ChatBot() {
               </button>
             </div>
 
-            {/* Messages Area */}
+            {/* Messages */}
             <div className="flex-1 overflow-y-auto px-3 py-3 flex flex-col gap-3">
               {messages.map((msg, i) => (
                 <motion.div
@@ -218,6 +384,7 @@ export default function ChatBot() {
                     msg.role === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
+                  {/* Bot avatar */}
                   {msg.role === "assistant" && (
                     <div className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center border border-[#0047AB]/40 bg-[#0047AB]/10 mb-0.5">
                       <svg
@@ -230,8 +397,9 @@ export default function ChatBot() {
                       </svg>
                     </div>
                   )}
+
                   <div
-                    className={`max-w-[78%] px-3 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
+                    className={`max-w-[78%] px-3 py-2.5 rounded-2xl text-sm ${
                       msg.role === "user"
                         ? "rounded-br-sm text-white"
                         : "rounded-bl-sm text-white/85 border border-white/5"
@@ -245,12 +413,23 @@ export default function ChatBot() {
                         : { background: "#1c1c1c" }
                     }
                   >
-                    {msg.content}
+                    {msg.role === "assistant" ? (
+                      msg.streaming ? (
+                        <StreamingMessage
+                          content={msg.content}
+                          onDone={() => handleStreamDone(i)}
+                        />
+                      ) : (
+                        <FormattedMessage content={msg.content} />
+                      )
+                    ) : (
+                      <p className="leading-relaxed">{msg.content}</p>
+                    )}
                   </div>
                 </motion.div>
               ))}
 
-              {/* Typing dots */}
+              {/* Typing dots — only shown while waiting for API */}
               <AnimatePresence>
                 {isLoading && (
                   <motion.div
@@ -274,15 +453,15 @@ export default function ChatBot() {
                       style={{ background: "#1c1c1c" }}
                     >
                       <div className="flex gap-1 items-center h-3">
-                        {[0, 1, 2].map((i) => (
+                        {[0, 1, 2].map((j) => (
                           <motion.span
-                            key={i}
+                            key={j}
                             className="w-1.5 h-1.5 rounded-full bg-[#0047AB]"
                             animate={{ y: [0, -4, 0] }}
                             transition={{
                               duration: 0.55,
                               repeat: Infinity,
-                              delay: i * 0.15,
+                              delay: j * 0.15,
                             }}
                           />
                         ))}
@@ -292,7 +471,7 @@ export default function ChatBot() {
                 )}
               </AnimatePresence>
 
-              {/* Quick suggestions */}
+              {/* Suggestion chips */}
               <AnimatePresence>
                 {showSuggestions && messages.length === 1 && !isLoading && (
                   <motion.div
@@ -301,9 +480,7 @@ export default function ChatBot() {
                     exit={{ opacity: 0 }}
                     className="flex flex-col gap-2 pt-1"
                   >
-                    <p className="text-white/25 text-xs pl-8">
-                      Try asking:
-                    </p>
+                    <p className="text-white/25 text-xs pl-8">Try asking:</p>
                     <div className="flex flex-wrap gap-2 pl-8">
                       {SUGGESTIONS.map((s, i) => (
                         <motion.button
@@ -360,7 +537,7 @@ export default function ChatBot() {
                 </motion.button>
               </div>
               <p className="text-white/15 text-xs text-center mt-2 tracking-wide">
-                Powered by Claude AI
+                Created By Aizaz Ahmed | All rights reserved © 2026
               </p>
             </div>
           </motion.div>
