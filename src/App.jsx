@@ -1,23 +1,24 @@
 import { useEffect, useState } from 'react'
 import Lenis from 'lenis'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 import Preloader from './Components/Preloader'
-import FloatingAIButton from './Components/FloatingAIButton'
+// import FloatingAIButton from './Components/FloatingAIButton'
+import ChatBot from './Components/ChatBot'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
   const location = useLocation();
 
-  // Ensure we are at the top on load
+  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  // Lenis smooth scroll
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -44,7 +45,9 @@ function App() {
 
   return (
     <>
-      <FloatingAIButton />
+      {/* <FloatingAIButton /> */}
+      <ChatBot />
+
       <AnimatePresence mode='wait'>
         {isLoading ? (
           <Preloader key="preloader" onComplete={() => setIsLoading(false)} />

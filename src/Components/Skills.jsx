@@ -64,8 +64,8 @@ function Skills() {
         // We calculate roughly the size of the cards (w=80+32=112? approx 120px)
         // Let's assume the cards are roughly 100x100 for physics collision
         const skillBodies = skillsData.map((skill, index) => {
-            const x = Math.random() * (width - 100) + 50
-            const y = Math.random() * (height / 2) // Start inside top half
+            const x = Math.random() * (width - 50) + 50
+            const y = Math.random() * (height / 1) // Start inside top half
 
             const body = Bodies.rectangle(x, y, 100, 100, {
                 restitution: 0.8, // Bouncy
