@@ -7,7 +7,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const require = createRequire(import.meta.url)
-const trainingData = require('./chatbot_training_data.json')
+const trainingData = require('../backend/chatbot_training_data.json')
 
 const app = express()
 app.use(cors())
@@ -15,7 +15,7 @@ app.use(express.json())
 
 const client = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
-// ── Smart search: find top N relevant Q&A pairs for a given query ──
+// Smart search: find top N relevant Q&A pairs for a given query
 function findRelevantPairs(query, topN = 6) {
   const queryWords = query
     .toLowerCase()
@@ -45,12 +45,12 @@ const BASE_SYSTEM = `You are a friendly AI assistant embedded in Aizaz Ahmed's p
 
 STRICT RULES:
 1. Only answer using the RELEVANT KNOWLEDGE provided below.
-2. Match the user's tone — casual reply casual, formal reply formal, Urdu/English mix reply same way.
+2. Match the user's tone - casual reply casual, formal reply formal, Urdu/English mix reply same way.
 3. Keep answers short and conversational.
 4. If not covered in the knowledge, say: "I don't have that info, but you can reach Aizaz at aizazahmed098@gmail.com or WhatsApp +923008925097"
 5. Never make up information not in the knowledge.
 6. If someone greets you (hi, hello, salam, aoa), greet back warmly and ask how you can help.
-7. Handle typos and informal language — always try to understand the intent.`
+7. Handle typos and informal language - always try to understand the intent.`
 
 app.post('/api/chat', async (req, res) => {
   const { message, history = [] } = req.body
@@ -66,7 +66,7 @@ app.post('/api/chat', async (req, res) => {
   const relevantKnowledge = findRelevantPairs(message)
   const systemPrompt = relevantKnowledge
     ? `${BASE_SYSTEM}\n\nRELEVANT KNOWLEDGE:\n${relevantKnowledge}`
-    : `${BASE_SYSTEM}\n\nNo specific knowledge found — use general portfolio info or direct to contact.`
+    : `${BASE_SYSTEM}\n\nNo specific knowledge found - use general portfolio info or direct to contact.`
 
   try {
     const response = await client.chat.completions.create({
@@ -90,5 +90,5 @@ app.post('/api/chat', async (req, res) => {
 
 const PORT = 3001
 app.listen(PORT, () => {
-  console.log(`✅ Chatbot server running at http://localhost:${PORT}`)
+  console.log(`Chatbot server running at http://localhost:${PORT}`)
 })
