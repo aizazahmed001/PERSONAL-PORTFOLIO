@@ -14,7 +14,7 @@ dotenv.config({ path: path.join(__dirname, '.env') })
 dotenv.config({ path: path.join(__dirname, '..', '.env') })
 
 const require = createRequire(import.meta.url)
-const trainingData = require('../backend/chatbot_training_data.json')
+const trainingData = require('./chatbot_training_data.json')
 
 const app = express()
 app.use(cors())
