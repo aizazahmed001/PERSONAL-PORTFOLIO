@@ -100,6 +100,23 @@ app.post('/api/chat', async (req, res) => {
   }
 })
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const DEFAULT_PORT = Number(process.env.PORT || 5000)
 
+function startServer(port) {
+  const server = app.listen(port, () => {
+    console.log(`Server running on port ${port}`)
+  })
+
+  server.on('error', (error) => {
+    if (error.code === 'EADDRINUSE') {
+      const nextPort = port + 1
+      console.warn(`Port ${port} is in use. Trying ${nextPort}...`)
+      startServer(nextPort)
+      return
+    }
+
+    throw error
+  })
+}
+
+startServer(DEFAULT_PORT)
