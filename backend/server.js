@@ -4,6 +4,7 @@ import { createRequire } from 'module'
 import Groq from 'groq-sdk'
 import dotenv from 'dotenv'
 import path from 'path'
+import fs from 'fs'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -14,7 +15,18 @@ dotenv.config({ path: path.join(__dirname, '.env') })
 dotenv.config({ path: path.join(__dirname, '..', '.env') })
 
 const require = createRequire(import.meta.url)
-const trainingData = require('./chatbot_training_data.json')
+const trainingDataCandidates = [
+  path.join(__dirname, 'chatbot_training_data.json'),
+  path.join(process.cwd(), 'chatbot_training_data.json'),
+  path.join(process.cwd(), 'backend', 'chatbot_training_data.json'),
+]
+
+const trainingDataPath = trainingDataCandidates.find((candidate) => fs.existsSync(candidate))
+if (!trainingDataPath) {
+  throw new Error('chatbot_training_data.json not found in deployment filesystem')
+}
+
+const trainingData = require(trainingDataPath)
 
 const app = express()
 app.use(cors())
