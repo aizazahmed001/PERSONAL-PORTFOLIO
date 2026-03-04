@@ -3,8 +3,15 @@ import cors from 'cors'
 import { createRequire } from 'module'
 import Groq from 'groq-sdk'
 import dotenv from 'dotenv'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-dotenv.config()
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// Load env from backend/.env first, then fallback to project-root .env
+dotenv.config({ path: path.join(__dirname, '.env') })
+dotenv.config({ path: path.join(__dirname, '..', '.env') })
 
 const require = createRequire(import.meta.url)
 const trainingData = require('../backend/chatbot_training_data.json')
@@ -13,7 +20,12 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-const client = new Groq({ apiKey: process.env.GROQ_API_KEY })
+const apiKey = process.env.GROQ_API_KEY?.trim()
+if (!apiKey) {
+  throw new Error('Missing GROQ_API_KEY. Add it to backend/.env or project-root .env')
+}
+
+const client = new Groq({ apiKey })
 
 // Smart search: find top N relevant Q&A pairs for a given query
 function findRelevantPairs(query, topN = 6) {
@@ -90,5 +102,4 @@ app.post('/api/chat', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
 
