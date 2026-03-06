@@ -8,6 +8,7 @@ import Footer from './Components/Footer'
 import Preloader from './Components/Preloader'
 // import FloatingAIButton from './Components/FloatingAIButton'
 import ChatBot from './Components/ChatBot'
+import GlobalCursor from './Components/GlobalCursor'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,6 +46,7 @@ function App() {
 
   return (
     <>
+      <GlobalCursor />
       {/* <FloatingAIButton /> */}
       <ChatBot />
 
