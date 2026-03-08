@@ -29,7 +29,11 @@ if (!trainingDataPath) {
 const trainingData = require(trainingDataPath)
 
 const app = express()
-app.use(cors())
+app.use(cors(
+  {
+ origin: 'https://aizaz-se.vercel.app'
+  }
+));
 app.use(express.json())
 
 const apiKey = process.env.GROQ_API_KEY?.trim()
