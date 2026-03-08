@@ -36,6 +36,11 @@ app.use(cors(
 ));
 app.use(express.json())
 
+// Add this
+app.get('/', (req, res) => {
+  res.send('Backend is running! 🚀');
+});
+
 const apiKey = process.env.GROQ_API_KEY?.trim()
 if (!apiKey) {
   throw new Error('Missing GROQ_API_KEY. Add it to backend/.env or project-root .env')
