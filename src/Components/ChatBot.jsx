@@ -210,9 +210,9 @@ export default function ChatBot() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          message: text.trim(),
-          history: messages.slice(-6),
-        }),
+  message: text.trim(),
+  history: messages.slice(-6).map(({ role, content }) => ({ role, content })),
+}),
       });
 
       const data = await res.json();
@@ -223,7 +223,7 @@ export default function ChatBot() {
       // Add message with streaming: true — triggers word-by-word animation
       setMessages([
         ...updated,
-        { role: "assistant", content: reply, streaming: true },
+        { role: 'assistant', content: reply },
       ]);
       if (!isOpen) setHasNewMessage(true);
     } catch {
